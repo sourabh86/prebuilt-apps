@@ -339,6 +339,7 @@ namespace FieldService.iOS
 					cell.BackgroundColor = Theme.LinenPattern;
 					cell.BackgroundView = new UIView { BackgroundColor = Theme.LinenPattern };
 					cell.SelectedBackgroundView = new UIView { BackgroundColor = Theme.DarkGrayColor };
+					cell.SeparatorInset = new UIEdgeInsets (0, 15, 0, 0);
 				}
 
 				if (!cells.Contains (cell))
@@ -370,11 +371,24 @@ namespace FieldService.iOS
 
 			public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 			{
+				if (Theme.IsiOS7) {
+					var cell = tableView.CellAt (indexPath);
+					cell.SeparatorInset = new UIEdgeInsets (0, 0, 0, cell.Frame.Width);
+				}
+
 				controller.OnMenuChanged(new MenuEventArgs { TableView = tableView, IndexPath = indexPath });
 
 				var splitController = controller.ParentViewController as SplitController;
 				if (splitController != null) 
 					splitController.HidePopover ();
+			}
+
+			public override void RowDeselected (UITableView tableView, NSIndexPath indexPath)
+			{
+				if (Theme.IsiOS7) {
+					var cell = tableView.CellAt (indexPath);
+					cell.SeparatorInset = new UIEdgeInsets (0, 15, 0, 0);
+				}
 			}
 
 			protected override void Dispose (bool disposing)
