@@ -8,3 +8,5 @@ bin
 obj
 test-results
 Resource.Designer.cs
+Components/
+packages/
