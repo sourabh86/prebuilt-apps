@@ -38,6 +38,10 @@
     <Compile Include="SearchPage.cs" />
     <Compile Include="TabItem.cs" />
     <Compile Include="CustomerMap.cs" />
+    <Compile Include="OptionItem.cs" />
+    <Compile Include="GenericValueConverter.cs" />
+    <Compile Include="StripedListView.cs" />
+    <Compile Include="StripedViewCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
