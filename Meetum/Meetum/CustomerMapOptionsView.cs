@@ -21,29 +21,37 @@ namespace Meetum.Views
 
         public CustomerMapOptionsView ()
         {
-            BackgroundColor = Color.FromHex("e5ecee");
+            BackgroundColor = Color.FromHex("333333");
 
-            var layout = new RelativeLayout();
-            var label = new Label {
-                Text = "Search By", 
-                BackgroundColor = Color.Transparent, 
-                Font = Font.BoldSystemFontOfSize(NamedSize.Large),
-                TextColor = Color.FromHex("a4a9aa")
+            var layout = new StackLayout() { Spacing = 0 };
+
+            var label = new ContentView {
+                Padding = new Thickness(10, 36, 0, 5),
+                BackgroundColor = Color.Transparent,
+                Content = new Label {
+                    Text = "Filter By".ToUpper(), 
+                    Font = Font.SystemFontOfSize(NamedSize.Micro),
+                    TextColor = Color.FromHex("AAAAAA")
+                }
             };
 
-            layout.Children.Add(label, ()=> new Rectangle(new Point(10, 10), new Size(400, 400)));
+            layout.Children.Add(label);
 
-            var listView = new StripedListView {
+            var listView = new ListView {
                 ItemSource = OptionItems,
-                VerticalOptions = LayoutOptions.Start
+                VerticalOptions = LayoutOptions.Start,
+                BackgroundColor = Color.Transparent
             };
 
-            var cell = new DataTemplate(typeof(StripedViewCell));
+            var cell = new DataTemplate(typeof(DarkTextCell));
             cell.SetBinding(TextCell.TextProperty, "Title");
             cell.SetBinding(TextCell.DetailProperty, "Subtitle");
-            listView.ItemTemplate = cell;
 
-            layout.Children.Add(listView, ()=> 0, ()=> label.Y + 40, (Expression<Func<double>>)null, (Expression<Func<double>>)null);
+            listView.ItemTemplate = cell;
+            listView.ItemTemplate.SetValue(VisualElement.BackgroundColorProperty, Color.Transparent);
+
+            layout.Children.Add(listView);
+
             Content = layout;
         }
     }

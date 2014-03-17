@@ -7,9 +7,10 @@ namespace Meetum.Views
     {
         public SearchPage ()
         {
-            Title = "Customers Nearby";
-            Master = new CustomerMapOptionsView();
-            Detail = new CustomerMapDisplayView();
+            Master = new CustomerMapOptionsView { Icon = "settings.png" };
+            Detail = new NavigationPage(new CustomerMapDisplayView { Title = "Customers Nearby" }) {
+                Tint = Color.FromHex("5AA09B") 
+            };
         }
     }
 }

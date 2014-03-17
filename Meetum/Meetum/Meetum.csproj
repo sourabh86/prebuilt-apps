@@ -42,6 +42,7 @@
     <Compile Include="GenericValueConverter.cs" />
     <Compile Include="StripedListView.cs" />
     <Compile Include="StripedViewCell.cs" />
+    <Compile Include="DarkTextCell.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

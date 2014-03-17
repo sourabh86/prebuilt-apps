@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Meetum.iOS</string>
+	<string>Meetum</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.Meetum.iOS</string>
 	<key>CFBundleShortVersionString</key>

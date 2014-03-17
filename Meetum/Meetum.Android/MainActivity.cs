@@ -1,9 +1,4 @@
-﻿using System;
-using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+﻿using Android.App;
 using Android.OS;
 using Xamarin.QuickUI;
 using Xamarin;
@@ -27,7 +22,7 @@ namespace Meetum.Android
 
         static Page BuildView()
         {
-            return new NavigationPage(new SearchPage());
+            return new SearchPage();
         }
     }
 }

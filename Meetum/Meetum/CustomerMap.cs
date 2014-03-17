@@ -33,20 +33,20 @@ namespace Meetum.Views
                 });
             };
 
-            var buttonAddressFromPosition = new Button { Text = "Address From Position" };
+            var buttonAddressFromPosition = new Button { Text = "Address From Position", TextColor = Color.White };
             buttonAddressFromPosition.Clicked += async (e, a) => {
                 var addresses = (await (new Geocoder ()).GetAddressesForPositionAsync (new Position (41.8902, 12.4923))).ToList ();
                 foreach (var ad in addresses)
                     Debug.WriteLine (ad);
             };
 
-            var buttonZoomIn = new Button { Text = "Zoom In" };
+            var buttonZoomIn = new Button { Text = "Zoom In", TextColor = Color.White };
             buttonZoomIn.Clicked += (e, a) => map.MoveToRegion (map.VisibleRegion.WithZoom (5f));
 
-            var buttonZoomOut = new Button { Text = "Zoom Out" };
+            var buttonZoomOut = new Button { Text = "Zoom Out", TextColor = Color.White };
             buttonZoomOut.Clicked += (e, a) => map.MoveToRegion (map.VisibleRegion.WithZoom (1 / 3f));
 
-            var mapTypeButton = new Button { Text = "Map Type" };
+            var mapTypeButton = new Button { Text = "Map Type", TextColor = Color.White };
             mapTypeButton.Clicked += async (e, a) => {
                 var result = await parent.DisplayActionSheet ("Select Map Type", null, null, "Street", "Satellite", "Hybrid");
                 switch (result) {
@@ -62,7 +62,7 @@ namespace Meetum.Views
                 }
             };
 
-            var stack = new StackLayout { Spacing = 0, BackgroundColor = Color.FromHex("EEEEE9")};
+            var stack = new StackLayout { Spacing = 0, BackgroundColor = Color.FromHex("DAD0C8")};
 
             map.VerticalOptions = LayoutOptions.FillAndExpand;
             map.HeightRequest = 100;
@@ -75,19 +75,14 @@ namespace Meetum.Views
                 Spacing = 30,
                 Padding = new Thickness(20, 0, 20, 0)
             };
+
             buttonStack.Children.Add (mapTypeButton);
             buttonStack.Children.Add (buttonZoomIn);
             buttonStack.Children.Add (buttonZoomOut);
             buttonStack.Children.Add (buttonAddressFromPosition);
-            stack.Children.Add(buttonStack);
 
-            // Alternative toolbar approach.
-//            var toolbar = new Toolbar();
-//            foreach (string name in new[] { "Zoom In", "Zoom Out", "Map Type", "Locate Me" }) {
-//                var toolbarItem = new ToolbarItem (name, null, () => { });
-//                toolbar.Add (toolbarItem);
-//            }
-//            stack.Children.Add(toolbar);
+            // Wrap in a horizonal scroll view to handle small screens.
+            stack.Children.Add(new ScrollView { Content = buttonStack, HeightRequest = 44, Orientation = ScrollView.ScrollOrientation.Horizontal });
 
             return stack;
         }

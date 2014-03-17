@@ -23,6 +23,7 @@ namespace Meetum.iOS
         }
     }
 
+
     public class StripedListViewRenderer : ListViewRenderer
     {
         protected override void OnModelSet (VisualElement view)
